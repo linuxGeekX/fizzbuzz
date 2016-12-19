@@ -1,32 +1,32 @@
 (function() {
 	var fs = require('fs');
-	var fbArr = [];
 
 	fs.readFile("fizzbuzz.txt", "utf8", function(err, data) {
 		if(err !== null)
-			generateFBData();
+			generateFBData(writeFBData);
 		else {
-			console.log("Fetched array")
-			fbArr = JSON.parse(data);
-			writeFBData();
+			console.log("Fetched array");
+			console.log(JSON.parse(data));
 		}
 	});
 
-	function generateFBData() {
-		console.log("Building array...")
+	function generateFBData(callback) {
+		console.log("Building array...");
+		var tmpArr = [];
 		for(var i = 1; i < 101; ++i) {
 			var str = i + ": ";
 			if(i % 3 == 0)
 				str += "fizz"
 			if(i % 5 == 0)
 				str += "buzz"
-			fbArr.push(str);
+			tmpArr.push(str);
 		}
-		writeFBData();
+		console.log(tmpArr);
+		callback(tmpArr);
 	}
 
-	function writeFBData() {
-		fs.writeFile("fizzbuzz.txt", JSON.stringify(fbArr), "utf8", function(err) {
+	function writeFBData(arr) {
+		fs.writeFile("fizzbuzz.txt", JSON.stringify(arr), "utf8", function(err) {
 			if(err !== null)
 				console.log('ERROR: ' + err);
 		});
