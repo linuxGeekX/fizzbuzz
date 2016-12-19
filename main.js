@@ -8,8 +8,5 @@
 			str += "buzz"
 		fbArr.push(str);
 	}
-	//console.log(fbArr);
-	fbArr.forEach(function(e) {
-		console.log(e);
-	});
+	console.log(fbArr);	
 })();
