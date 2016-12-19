@@ -1,4 +1,5 @@
 (function() {
+	var fs = require('fs');
 	var fbArr = [];
 	for(var i = 1; i < 101; ++i) {
 		var str = i + ": ";
@@ -8,5 +9,8 @@
 			str += "buzz"
 		fbArr.push(str);
 	}
-	console.log(fbArr);	
+	fs.writeFile("fizzbuzz.txt", fbArr, "utf8", function(err) {
+		if(err !== null)
+			console.log('ERROR: ' + err);
+	});
 })();
